@@ -126,4 +126,6 @@ def htmlout():
     fout.write(f"<!DOCTYPE html><body>{action}</body></html>")
     fout.close()
 
+yesterdays_value()
+get_200_day_average()
 htmlout()
