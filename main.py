@@ -34,7 +34,7 @@ def get_values():
 
 def yesterdays_value():
     today = datetime.today().strftime("%Y-%m-%d")
-    f1 = open("putcallratio", "r")
+    f1 = open("putcallratio.txt", "r")
     f2 = open("calendar.csv", "r")
     kalender = f2.readlines()
 
@@ -123,7 +123,7 @@ def htmlout():
     
     action = buy_sell()
 
-    fout.write(f"<!DOCTYPE html><body>{action}</body></html>")
+    fout.write(f"<!DOCTYPE html><body><h1>{action}</h1></body></html>")
     fout.close()
 
 yesterdays_value()
