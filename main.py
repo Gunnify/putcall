@@ -41,19 +41,24 @@ def yesterdays_value():
     kalender = f3.readlines()
     daybefore = kalender[kalender.index(list(filter(lambda x: today in x, kalender))[0]) - 1]
     if list(filter(lambda x: daybefore in x, tradingkalender)) == []:
+        f1.close()
+        f2.close()
+        f3.close()
         return 0
 
     if len(list(filter(lambda x: daybefore in x, f1.readlines()))) > 0 or not list(filter(lambda x: today in x, f1.readlines())) == []:
         print("already done!")
         f1.close()
         f2.close()
-        sys.exit()
+        f3.close()
     
     else:
         f1.close()
-        f1 = open("putcallrationew - Kopie - Kopie.txt", "a")
+        f1 = open("putcallratio.txt", "a")
         f1.write("\n" + get_data(daybefore) + ", " + daybefore)
         f1.close()
+        f2.close()
+        f3.close()
 
 def get_200_day_average():
     fin = open("putcallratio", "r")
@@ -81,8 +86,6 @@ def buy_sell():
     value2 = float(values[-2].split(",")[0])
 
     average = float(list(averages[-1].split(","))[0])
-    print(average)
-    print(str(value1) + "\n" + str(value2))
 
     day = datetime.today().strftime("%Y-%m-%d")
 
@@ -123,9 +126,8 @@ def buy_sell():
 
 def htmlout():
     fout = open("anlage.html", "w")
-    
     action = buy_sell()
-
+    print(action)
     fout.write(f"<!DOCTYPE html><body><h1>{action}</h1></body></html>")
     fout.close()
 
