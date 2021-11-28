@@ -61,7 +61,7 @@ def yesterdays_value():
         f3.close()
 
 def get_200_day_average():
-    fin = open("putcallratio", "r")
+    fin = open("putcallratio.txt", "r")
     fout = open("200_day_averages.txt", "a")
     putcallratioswdate = fin.readlines()
     fin.close()
