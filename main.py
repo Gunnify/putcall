@@ -36,9 +36,12 @@ def yesterdays_value():
     today = datetime.today().strftime("%Y-%m-%d")
     f1 = open("putcallratio.txt", "r")
     f2 = open("calendar.csv", "r")
-    kalender = f2.readlines()
-
+    f3 = open("all dates calendar.csv", "r")
+    tradingkalender = f2.readlines()
+    kalender = f3.readlines()
     daybefore = kalender[kalender.index(list(filter(lambda x: today in x, kalender))[0]) - 1]
+    if list(filter(lambda x: daybefore in x, tradingkalender)) == []:
+        return 0
 
     if len(list(filter(lambda x: daybefore in x, f1.readlines()))) > 0 or not list(filter(lambda x: today in x, f1.readlines())) == []:
         print("already done!")
