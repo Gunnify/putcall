@@ -2,7 +2,6 @@ import time
 from typing import Text
 from requests import get
 from datetime import datetime
-import sys
 
 
 def get_data(day):
@@ -131,6 +130,8 @@ def htmlout():
     fout.write(f"<!DOCTYPE html><body><h1>{action}</h1></body></html>")
     fout.close()
 
-yesterdays_value()
-get_200_day_average()
-htmlout()
+# yesterdays_value()
+# get_200_day_average()
+# htmlout()
+
+print(get_data("2021-11-29"))
