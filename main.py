@@ -1,7 +1,31 @@
 import time
-from typing import Text
 from requests import get
 from datetime import datetime
+
+def round(number, digits=2):
+    numstr = str(number)
+    numlist = []
+
+    for i in range(0, len(numstr)):
+        numlist.append(numstr[i])
+
+    roundingindex = numlist.index(".") + digits + 1
+    if int(numstr[roundingindex]) >= 5:
+        var = numlist[roundingindex - 1]
+        numlist[roundingindex - 1] = int(var) - 1 
+
+    print(numlist)
+    for i in range(roundingindex, len(numlist)):
+        del numlist[i]
+
+    roundednum = ""
+    for i in numlist:
+        roundednum += i
+
+    return int(roundednum)
+    
+
+print(round(10.5098790870897089787983))
 
 
 def get_data(day):
@@ -28,7 +52,6 @@ def get_values():
     for i in range(1, 227, 1):
         fout.write(get_data(list(days[i].split(";"))[1]) + ", " + str(days[i]))
         print(i)
-    
     fout.close()
 
 def yesterdays_value():
@@ -36,21 +59,24 @@ def yesterdays_value():
     f1 = open("putcallratio.txt", "r")
     f2 = open("calendar.csv", "r")
     f3 = open("all dates calendar.csv", "r")
+    putcallratios = f1.readlines()
     tradingkalender = f2.readlines()
     kalender = f3.readlines()
-    daybefore = kalender[kalender.index(list(filter(lambda x: today in x, kalender))[0]) - 1]
+    daybefore = list(kalender[kalender.index(list(filter(lambda x: today in x, kalender))[0]) - 1].split("\n"))[0]
+    print(daybefore)
     if list(filter(lambda x: daybefore in x, tradingkalender)) == []:
         f1.close()
         f2.close()
         f3.close()
+        print("1. case")
         return 0
 
-    if len(list(filter(lambda x: daybefore in x, f1.readlines()))) > 0 or not list(filter(lambda x: today in x, f1.readlines())) == []:
+    if len(list(filter(lambda x: daybefore in x, putcallratios))) > 0 or not list(filter(lambda x: today in x, putcallratios)) == []:
         print("already done!")
         f1.close()
         f2.close()
         f3.close()
-    
+
     else:
         f1.close()
         f1 = open("putcallratio.txt", "a")
@@ -134,4 +160,4 @@ def htmlout():
 # get_200_day_average()
 # htmlout()
 
-print(get_data("2021-11-29"))
+print(round(10.5098790870897089787983))
