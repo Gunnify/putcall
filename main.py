@@ -97,39 +97,39 @@ def buy_sell():
 
     day = datetime.today().strftime("%Y-%m-%d")
 
-    if average * 1.15 <= value1:
-        if average * 1.15 <= value2:
-            fbuyhold.write(f"Buy\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}")
+    if normal_round(average * 1.15, 2) <= value1:
+        if normal_round(average * 1.15, 2) <= value2:
+            fbuyhold.write(f"Buy\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}")
             fbuyhold.close()
             fvalue.close()
             faverage.close()
-            return f"Buy\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}"
+            return f"Buy\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}"
         else:
-            fbuyhold.write(f"Watch tomorrow to buy\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}")
+            fbuyhold.write(f"Watch tomorrow to buy\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}")
             fbuyhold.close()
             fvalue.close()
             faverage.close()
-            return f"Watch tomorrow to buy\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}"
+            return f"Watch tomorrow to buy\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}"
 
-    elif average * 0.85 >= value1:
-        if average * 0.85 >= value2:
-            fbuyhold.write(f"Sell\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}")
+    elif normal_round(average * 0.85,  2) >= value1:
+        if normal_round(average * 0.85,  2) >= value2:
+            fbuyhold.write(f"Sell\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}")
             fbuyhold.close()
             fvalue.close()
             faverage.close()
-            return f"Sell\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}"
+            return f"Sell\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}"
         else:
-            fbuyhold.write(f"Watch tomorow to sell\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}")
+            fbuyhold.write(f"Watch tomorow to sell\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}")
             fbuyhold.close()
             fvalue.close()
             faverage.close()
-            return f"Watch tomorow to sell\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}"
+            return f"Watch tomorow to sell\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}"
     else:
-        fbuyhold.write(f"Hold\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}")
+        fbuyhold.write(f"Hold\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}")
         fbuyhold.close()
         fvalue.close()
         faverage.close()
-        return f"Hold\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {average*1.15}; sell: {average*0.85}\nToday: {day}"
+        return f"Hold\nAverage: {average}\nputcallratio 1 day before: {value1}; 2 days before: {value2}\nputcallratiolimits: buy: {normal_round(average * 1.15,  2)}; sell: {normal_round(average * 0.85,  2)}\nToday: {day}"
 
 
 def htmlout():
