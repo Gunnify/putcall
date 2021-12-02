@@ -1,31 +1,13 @@
 import time
 from requests import get
 from datetime import datetime
+import math
 
-def round(number, digits=2):
-    numstr = str(number)
-    numlist = []
-
-    for i in range(0, len(numstr)):
-        numlist.append(numstr[i])
-
-    roundingindex = numlist.index(".") + digits + 1
-    if int(numstr[roundingindex]) >= 5:
-        var = numlist[roundingindex - 1]
-        numlist[roundingindex - 1] = int(var) - 1 
-
-    print(numlist)
-    for i in range(roundingindex, len(numlist)):
-        del numlist[i]
-
-    roundednum = ""
-    for i in numlist:
-        roundednum += i
-
-    return int(roundednum)
-    
-
-print(round(10.5098790870897089787983))
+def normal_round(n, decimals=0):
+    expoN = n * 10 ** decimals
+    if abs(expoN) - abs(math.floor(expoN)) < 0.5:
+        return math.floor(expoN) / 10 ** decimals
+    return math.ceil(expoN) / 10 ** decimals
 
 
 def get_data(day):
@@ -96,6 +78,7 @@ def get_200_day_average():
         allratios.append(float(list(putcallratioswdate[i].split(","))[0]))
 
     average = sum(allratios) / len(allratios)
+    average = normal_round(average, 2)
     fout.write(str(average) + ", " + datetime.today().strftime("%Y-%m-%d") + "\n")
     fout.close()
 
@@ -156,8 +139,6 @@ def htmlout():
     fout.write(f"<!DOCTYPE html><body><h1>{action}</h1></body></html>")
     fout.close()
 
-# yesterdays_value()
-# get_200_day_average()
-# htmlout()
-
-print(round(10.5098790870897089787983))
+yesterdays_value()
+get_200_day_average()
+htmlout()
